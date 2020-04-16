@@ -80,6 +80,7 @@ class MetaField {
     IsEqual(const MetaField& field) const {
         size_t name_len_min = field.name_.length() > name_.length() ? name_.length() : field.name_.length();
         size_t type_len_min = field.type_.length() > type_.length() ? type_.length() : field.type_.length();
+        type_len_min = field.type_.find("(") == std::string::npos ? type_len_min : field.type_.find("(");
         return strncasecmp(field.name_.c_str(), name_.c_str(), name_len_min) == 0 &&
                strncasecmp(field.type_.c_str(), type_.c_str(), type_len_min) == 0;
     }
